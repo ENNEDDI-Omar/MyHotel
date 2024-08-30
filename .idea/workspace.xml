@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b053b50-8666-4ae9-bb70-4f4347ef02f7" name="Changes" comment="first commit">
-      <change afterPath="$PROJECT_DIR$/src/Chambre.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Hotel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Reservation.java" afterDir="false" />
+    <list default="true" id="6b053b50-8666-4ae9-bb70-4f4347ef02f7" name="Changes" comment="mise en place des classes et commencement du Menu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
@@ -92,7 +88,7 @@
       <workItem from="1724925100205" duration="12470000" />
       <workItem from="1724969367849" duration="1054000" />
       <workItem from="1725004999136" duration="4196000" />
-      <workItem from="1725009408225" duration="3728000" />
+      <workItem from="1725009408225" duration="6787000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -102,7 +98,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724920353235</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="mise en place des classes et commencement du Menu">
+      <option name="closed" value="true" />
+      <created>1725027719014</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1725027719014</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -110,6 +114,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
+    <MESSAGE value="mise en place des classes et commencement du Menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="mise en place des classes et commencement du Menu" />
   </component>
 </project>

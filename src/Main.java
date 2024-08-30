@@ -26,19 +26,28 @@ public class Main {
         {
           //mise en place des Options:
             System.out.println("\nMenu : ");
-            System.out.println("1 - Afficher les Informations du client:");
-            System.out.println("2 - Afficher les Informations du chambre:");
-            System.out.println("3 - Réserver une Chambre:");
-            System.out.println("4 - Afficher les Informations de la réservation");
-            System.out.println("5 - Quitter!");
+            System.out.println("1 - Informations :");
+            System.out.println("2 - Réservations :");
+            System.out.println("3 - Quitter!");
 
             System.out.println("Veuillez choisir une option:");
-            int options = sc.nextInt();
+            int optionsMenuPrincipale = sc.nextInt();
 
             //application des options:
-            switch (options)
+            switch (optionsMenuPrincipale)
             {
                 case 1:
+
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+                    quitter = true;
+                    break;
+                default:
+                    System.out.println("Choix d'option Invalide, Veuillez réessayer.");
+
 
 
             }
