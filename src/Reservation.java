@@ -1,12 +1,13 @@
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Reservation {
  private Client client;
  private Chambre chambre;
- private Date dateDebut;
- private Date dateFin;
+ private LocalDate dateDebut;
+ private LocalDate dateFin;
 
-   public Reservation(Client client, Chambre chambre, Date dateDebut, Date dateFin)
+   public Reservation(Client client, Chambre chambre, LocalDate dateDebut, LocalDate dateFin)
    {
        this.client = client;
        this.chambre = chambre;
@@ -17,11 +18,11 @@ public class Reservation {
 
     public String getClient() {return this.client.getNom();}
     public int getChambre() {return this.chambre.getNumero();}
-    public Date getDateDebut() {return this.dateDebut;}
-    public Date getDateFin() {return this.dateFin;}
+    public LocalDate getDateDebut() {return this.dateDebut;}
+    public LocalDate getDateFin() {return this.dateFin;}
 
-    public void setDateDebut(Date dateDebut) {this.dateDebut = dateDebut;}
-    public void setDateFin(Date dateFin) {this.dateFin = dateFin;}
+    public void setDateDebut(LocalDate dateDebut) {this.dateDebut = dateDebut;}
+    public void setDateFin(LocalDate dateFin) {this.dateFin = dateFin;}
 
     public void afficherDetailsReservation()
     {
