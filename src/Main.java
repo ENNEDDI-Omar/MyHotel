@@ -9,6 +9,8 @@ public class Main {
              Chambre ch2 = new Chambre(2, 200, "suite", "1000.DH");
              Chambre ch3 = new Chambre(3, 101, "double", "500.DH");
              Chambre ch4 = new Chambre(4, 111, "vip", "800.DH");
+             //liste des chambres:
+
 
          //création des clients:
              Client c1 = new Client(1, "omar", "06456789");
@@ -37,10 +39,12 @@ public class Main {
             switch (optionsMenuPrincipale)
             {
                 case 1:
-
+                    //Informations
+                        afficherSousMenuInformations(sc,c1, c2, c3, c4, ch1, ch2, ch3, ch4);
                     break;
                 case 2:
-
+                    //Réservations
+                        afficherSousMenuReservations(sc, c1, c2, c3, c4, ch1, ch2, ch3, ch4);
                     break;
                 case 3:
                     quitter = true;
@@ -53,6 +57,7 @@ public class Main {
       sc.close();
     }
 
+    //methode pour gestionner le menu des informations
     private static void afficherSousMenuInformations(Scanner sc, Client c1, Client c2, Client c3, Client c4, Chambre ch1, Chambre ch2, Chambre ch3, Chambre ch4)
     {
         boolean retourVersMenuPrincipale = false;
@@ -108,6 +113,7 @@ public class Main {
         }
     }
 
+    //methode pour gestionner le menu des réservations
     private static void afficherSousMenuReservations(Scanner sc, Client c1, Client c2, Client c3, Client c4, Chambre ch1, Chambre ch2, Chambre ch3, Chambre ch4)
     {
          boolean retourVersMenuPrincipale = false;
@@ -146,4 +152,77 @@ public class Main {
              }
          }
     }
+
+    //------------------------------------méthodes pour les Ops du Menu Infos-----------------------------------------
+
+    //Afficher les Informations d'un seul Client
+    private static void afficherInfoClient(Scanner sc, Client c1, Client c2, Client c3, Client c4)
+    {
+        System.out.println("\nEntrez l'ID du Client: ");
+        int clientId = sc.nextInt();
+        Client client = trouverClientParId(clientId, c1, c2, c3, c4);
+        if (client != null)
+        {
+            client.afficherInfoClient();
+        }else {
+            System.out.println("Client n'existe pas!");
+        }
+    }
+
+    //Methode pour Lister les Clients:
+    private static void listerClients(Client... clients)
+    {
+        for (Client client : clients)
+        {
+            client.afficherInfoClient();
+        }
+    }
+
+    //Vérifier une Chambre
+     private static void verifierChambre(Scanner sc, Chambre ch1, Chambre ch2, Chambre ch3, Chambre ch4)
+     {
+         System.out.println("Entrez l'ID de la Chambre: ");
+         int chambreId = sc.nextInt();
+         Chambre chambre = trouverChambreParId(chambreId, ch1, ch2, ch3, ch4);
+
+         if (chambre != null)
+         {
+             chambre.afficherDetailsChambre();
+         }else {
+             System.out.println("Chambre n'existe pas!");
+         }
+     }
+
+    //Lister toutes les Chambres
+    private static void listerLesChambres(Chambre... chambres)
+    {
+        for (Chambre chambre : chambres)
+        {
+            chambre.afficherDetailsChambre();
+        }
+    }
+
+    //Info sur une Réservation
+    private static void infoReservation(Scanner sc,Reservation... reservations)
+    {
+        System.out.println("Veuillez Entrez l'ID de la Reservation: ");
+        int reservationId = sc.nextInt();
+        Reservation reservation = trouverReservationId(reservationId, reservations);
+
+        if (reservation != null)
+        {
+            reservation.afficherDetailsReservation();
+        }
+    }
+
+    //Lister toutes les Réservations
+    private static void listerReservations(Reservation... reservations)
+    {
+        for (Reservation reservation : reservations)
+        {
+            reservation.afficherDetailsReservation();
+        }
+    }
+
+
 }
