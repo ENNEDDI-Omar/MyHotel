@@ -4,6 +4,7 @@ public class Chambre {
     private String type;
     private String prix;
     private boolean disponibility;
+    private Hotel hotel;
 
 
     public Chambre(int id, int numero, String type, String prix)
@@ -31,4 +32,14 @@ public class Chambre {
         System.out.println("Les Détails de la Chambre N°: "+getNumero()+" "+"type: "+getType()+" "+"prix: "+getPrix()+" "+"disponibility: "+(getDisponibility() ? "OUI" : "NON"));
     }
 
+    @Override
+    public String toString() {
+        return "Chambre{" +
+                "id=" + id +
+                ", numero=" + numero +
+                ", type='" + type + '\'' +
+                ", prix='" + prix + '\'' +
+                ", disponibility=" + disponibility +
+                '}';
+    }
 }
