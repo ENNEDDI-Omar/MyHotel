@@ -6,7 +6,8 @@ public class Hotel {
     private String name;
     private String address;
     private List<Chambre> chambres = new ArrayList<Chambre>();
-    private List<Client> clients = new ArrayList<>();
+    private List<Client> clients = new ArrayList<Client>();
+    private List<Reservation> reservations = new ArrayList<Reservation>();
 
     public Hotel(int id, String name, String address) {
         this.id = id;
@@ -19,6 +20,8 @@ public class Hotel {
     public String getName() {return name;}
     public String getAddress() {return address;}
     public List<Chambre> getChambres() {return chambres;}
+    public List<Client> getClients() {return clients;}
+    public List<Reservation> getReservations() {return reservations;}
 
     public void setName(String name) {this.name = name;}
     public void setAddress(String address) {this.address = address;}
@@ -92,7 +95,6 @@ public class Hotel {
        {
            if (chambre.getNumero() == numero)
            {
-               chambre.afficherDetailsChambre();
                return chambre;
            }
        }

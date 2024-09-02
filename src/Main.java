@@ -84,15 +84,15 @@ public class Main {
                     break;
                 case 2:
                     //Lister les Clients
-
+                      listerClients(myHotel);
                     break;
                 case 3:
                     //Vérifier une Chambre
-
+                    verifierChambre(sc, myHotel);
                     break;
                 case 4:
                     //Lister toutes les Chambres
-
+                    listerLesChambres(myHotel);
                     break;
                 case 5:
                     //Info sur une Réservation
@@ -169,9 +169,9 @@ public class Main {
     }
 
     //Methode pour Lister les Clients:
-    private static void listerClients(Client... clients)
+    private static void listerClients(Hotel hotel)
     {
-        for (Client client : clients)
+        for (Client client : hotel.getClients())
         {
             client.afficherInfoClient();
         }
@@ -180,32 +180,48 @@ public class Main {
     //Vérifier une Chambre
      private static void verifierChambre(Scanner sc, Hotel hotel)
      {
-         System.out.println("Entrez l'ID de la Chambre: ");
-         int chambreId = sc.nextInt();
+         System.out.println("Entrez le numero de la Chambre: ");
+         int numeroChambre = sc.nextInt();
+         Chambre chambre= hotel.chercherChambreParNumero(numeroChambre);
+
+         if (chambre != null)
+         {
+             chambre.afficherDetailsChambre();
+         }else {
+             System.out.println("Chambre n'existe pas!");
+         }
 
      }
 
     //Lister toutes les Chambres
-    private static void listerLesChambres(Chambre... chambres)
+    private static void listerLesChambres(Hotel hotel)
     {
-        for (Chambre chambre : chambres)
+        for (Chambre chambre : hotel.getChambres())
         {
             chambre.afficherDetailsChambre();
         }
     }
 
     //Info sur une Réservation
-    private static void infoReservation(Scanner sc,Reservation... reservations)
+    private static void infoReservation(Scanner sc, Hotel hotel)
     {
         System.out.println("Veuillez Entrez l'ID de la Reservation: ");
         int reservationId = sc.nextInt();
+        for (Reservation reservation : hotel.getReservations())
+        {
+            if (reservationId == reservation.getId())
+            {
+                reservation.afficherDetailsReservation();
+                break;
+            }
+        }
 
     }
 
     //Lister toutes les Réservations
-    private static void listerReservations(Reservation... reservations)
+    private static void listerReservations(Hotel hotel)
     {
-        for (Reservation reservation : reservations)
+        for (Reservation reservation : hotel.getReservations())
         {
             reservation.afficherDetailsReservation();
         }

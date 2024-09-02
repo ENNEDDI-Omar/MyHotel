@@ -30,7 +30,7 @@ public class Chambre {
 
     public void afficherDetailsChambre()
     {
-        System.out.println("Les Détails de la Chambre N°: "+getNumero()+" "+"type: "+getType()+" "+"prix: "+getPrix()+" "+"disponibility: "+(getDisponibility() ? "OUI" : "NON"));
+        System.out.println("Les Détails de la Chambre N°: "+getNumero()+"\n"+"type: "+getType()+"\n"+"prix: "+getPrix()+"\n"+"disponibility: "+(getDisponibility() ? "OUI" : "NON"));
     }
 
     @Override
