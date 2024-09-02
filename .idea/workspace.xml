@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b053b50-8666-4ae9-bb70-4f4347ef02f7" name="Changes" comment="ajout de la class Hotel et modification dus package de date">
+    <list default="true" id="6b053b50-8666-4ae9-bb70-4f4347ef02f7" name="Changes" comment="création des methodes dans la classe hotel">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chambre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chambre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Hotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hotel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Reservation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +93,7 @@
       <workItem from="1724969367849" duration="1054000" />
       <workItem from="1725004999136" duration="4196000" />
       <workItem from="1725009408225" duration="6787000" />
-      <workItem from="1725047037833" duration="21483000" />
+      <workItem from="1725047037833" duration="31402000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -132,7 +135,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725123139529</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="création des methodes dans la classe hotel">
+      <option name="closed" value="true" />
+      <created>1725200237841</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1725200237841</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,6 +155,7 @@
     <MESSAGE value="mise en place des sous Menus" />
     <MESSAGE value="ajout des methodes de gestion du sous menu d'informations" />
     <MESSAGE value="ajout de la class Hotel et modification dus package de date" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajout de la class Hotel et modification dus package de date" />
+    <MESSAGE value="création des methodes dans la classe hotel" />
+    <option name="LAST_COMMIT_MESSAGE" value="création des methodes dans la classe hotel" />
   </component>
 </project>

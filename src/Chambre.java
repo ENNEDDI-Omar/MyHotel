@@ -21,6 +21,7 @@ public class Chambre {
     public String getType(){return this.type;}
     public String getPrix(){return this.prix;}
     public boolean getDisponibility(){return this.disponibility;}
+    public Hotel getHotel(){return this.hotel;}
 
     public void setNumero(int numero){this.numero = numero;}
     public void setType(String type){this.type = type;}

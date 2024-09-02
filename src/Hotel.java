@@ -6,6 +6,7 @@ public class Hotel {
     private String name;
     private String address;
     private List<Chambre> chambres = new ArrayList<Chambre>();
+    private List<Client> clients = new ArrayList<>();
 
     public Hotel(int id, String name, String address) {
         this.id = id;
@@ -36,12 +37,22 @@ public class Hotel {
     }
 
 //methode pour ajouter une chambre:
-    public void ajouterChambre(int id, int numero, String type, String prix)
+    public Chambre ajouterChambre(int id, int numero, String type, String prix)
     {
      Chambre chambre = new Chambre(id, numero, type, prix);
      chambres.add(chambre);
         System.out.println("Chambre N°: " + chambre.getNumero() + "est ajoutée avec succés.");
+        return chambre;
     }
+
+//méthode pour Ajouter Client à l'hotel
+   public Client ajouterClient(int id, String nom, String tel)
+   {
+        Client newClient = new Client(id, nom, tel);
+        clients.add(newClient);
+       System.out.println("Client Ajoutée avec Succés");
+        return newClient;
+   }
 
 //methode pour modifier une chambre
    public void modifierChambre(int chambreId, String nouveauType, String nouveauPrix)
@@ -86,6 +97,21 @@ public class Hotel {
            }
        }
        System.out.println("Chambre non trouvée dans la recherche");
+       return null;
+   }
+
+//rechercher un client
+   public Client chercherClientParId(int clientId)
+   {
+       for (Client client : clients)
+       {
+           if (client.getId() == clientId)
+           {
+               client.afficherInfoClient();
+               return client;
+           }
+       }
+       System.out.println("Client inéxistant!");
        return null;
    }
 

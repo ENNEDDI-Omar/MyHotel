@@ -2,20 +2,22 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class Reservation {
+ private int id;
  private Client client;
  private Chambre chambre;
  private LocalDate dateDebut;
  private LocalDate dateFin;
 
-   public Reservation(Client client, Chambre chambre, LocalDate dateDebut, LocalDate dateFin)
+   public Reservation(int id, Client client, Chambre chambre, LocalDate dateDebut, LocalDate dateFin)
    {
+       this.id = id;
        this.client = client;
        this.chambre = chambre;
        this.dateDebut = dateDebut;
        this.dateFin = dateFin;
        this.chambre.setDisponibility(false);
    }
-
+    public int getId() {return id;}
     public String getClient() {return this.client.getNom();}
     public int getChambre() {return this.chambre.getNumero();}
     public LocalDate getDateDebut() {return this.dateDebut;}

@@ -8,6 +8,7 @@ public class Client {
     private String nom;
     private String tel;
     private List<Reservation> reservations = new ArrayList<Reservation>();
+    private Hotel hotel;
 
     public Client(int id, String nom, String tel) {
         this.id = id;
@@ -19,14 +20,15 @@ public class Client {
     public String getNom(){return this.nom;}
     public String getTel(){return this.tel;}
     public List<Reservation> getReservations(){return this.reservations;}
+    public Hotel getHotel(){return this.hotel;}
 
     public void setNom(String nom) {this.nom = nom;}
     public void setTel(String tel) {this.tel = tel;}
-    public void setReservations(List<Reservation> reservations) {this.reservations = reservations;}
+
 
 //methode pour afficher les infos du client:
     public void afficherInfoClient() {
-        System.out.println("Mes Infos: " + getNom() + " " + "Tél: " + getTel());
+        System.out.println("Infos du Client: \nNom: " + getNom() + "\n" + "Tél: " + getTel());
         if (reservations.isEmpty()){
             System.out.println("Aucune réservation pour ce Client: " + getNom());
         }else {
@@ -39,14 +41,61 @@ public class Client {
             }
         }
     }
-    
-    public Reservation ajouterReservation(Client client, Chambre chambre, LocalDate dateDebut, LocalDate dateFin)
+
+//methode Ajout de Réservation
+    public Reservation ajouterReservation(int reservationId, Chambre chambre, LocalDate dateDebut, LocalDate dateFin)
     {
-        Reservation nouvelleReservation = new Reservation(client, chambre, dateDebut, dateFin);
+        Reservation nouvelleReservation = new Reservation(reservationId, this, chambre, dateDebut, dateFin);
         reservations.add(nouvelleReservation);
         System.out.println("Réservation ajoutée avec succès!");
         return nouvelleReservation;
     }
+
+//methode de modification d'une réservation
+   public void modifierReservation(int reservationId, Chambre newChambre, LocalDate newDateDebut, LocalDate newDateFin)
+   {
+     for (Reservation r : reservations)
+     {
+         if (r.getId() == reservationId)
+         {
+             r.setDateDebut(newDateDebut);
+             r.setDateFin(newDateFin);
+             System.out.println("Réservation modiffier avec succés.");
+             return;
+         }
+     }
+       System.out.println("Réseravation non trouvée pour modiffication!");
+   }
+
+//methode de suppression de réservation
+  public void supprimerReservation(int reservationId)
+  {
+    for (Reservation r : reservations)
+    {
+        if (r.getId() == reservationId)
+        {
+            reservations.remove(r);
+            System.out.println("Réservation Annulée avec succés.");
+            return;
+        }
+    }
+      System.out.println("Réservation non trouvée pour Annulation");
+  }
+
+//rechercher une reservation
+  public Reservation rechercherReservation(int reservationId)
+  {
+    for (Reservation r : reservations)
+    {
+        if (r.getId() == reservationId)
+        {
+            r.afficherDetailsReservation();
+            return r;
+        }
+    }
+      System.out.println("Aucune Réservation trouvée!");
+     return null;
+  }
 
 
 }

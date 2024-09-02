@@ -4,19 +4,18 @@ import java.util.Scanner;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //créer des chambres :
-             Chambre ch1 = new Chambre(1, 404, "simple", "300.DH");
-             Chambre ch2 = new Chambre(2, 200, "suite", "1000.DH");
-             Chambre ch3 = new Chambre(3, 101, "double", "500.DH");
-             Chambre ch4 = new Chambre(4, 111, "vip", "800.DH");
-             //liste des chambres:
+        //création d'Hotel avec les chambres et les Clients :
+        Hotel myHotel = new Hotel(1, "MyHotel", "Mohammedia");
 
+        myHotel.ajouterChambre(1, 404, "simple", "300.DH");
+        myHotel.ajouterChambre(2, 200, "suite", "1000.DH");
+        myHotel.ajouterChambre(3, 101, "double", "500.DH");
+        myHotel.ajouterChambre(4, 111, "vip", "800.DH");
 
-         //création des clients:
-             Client c1 = new Client(1, "omar", "06456789");
-             Client c2 = new Client(2, "kamal", "064898989");
-             Client c3 = new Client(3, "test", "064898989");
-             Client c4 = new Client(4, "allo", "064898989");
+        myHotel.ajouterClient(1, "omar", "06456789");
+        myHotel.ajouterClient(2, "kamal", "064898989");
+        myHotel.ajouterClient(3, "test", "064898989");
+        myHotel.ajouterClient(4, "allo", "064898989");
 
         //création des réservation
 
@@ -40,11 +39,11 @@ public class Main {
             {
                 case 1:
                     //Informations
-                        afficherSousMenuInformations(sc,c1, c2, c3, c4, ch1, ch2, ch3, ch4);
+                        afficherSousMenuInformations(sc, myHotel);
                     break;
                 case 2:
                     //Réservations
-                        afficherSousMenuReservations(sc, c1, c2, c3, c4, ch1, ch2, ch3, ch4);
+                        afficherSousMenuReservations(sc, myHotel);
                     break;
                 case 3:
                     quitter = true;
@@ -58,7 +57,7 @@ public class Main {
     }
 
     //methode pour gestionner le menu des informations
-    private static void afficherSousMenuInformations(Scanner sc, Client c1, Client c2, Client c3, Client c4, Chambre ch1, Chambre ch2, Chambre ch3, Chambre ch4)
+    private static void afficherSousMenuInformations(Scanner sc, Hotel myHotel)
     {
         boolean retourVersMenuPrincipale = false;
 
@@ -81,7 +80,7 @@ public class Main {
             {
                 case 1:
                     //Afficher les Informations d'un seul Client
-
+                    afficherInfoClient(sc, myHotel);
                     break;
                 case 2:
                     //Lister les Clients
@@ -114,7 +113,7 @@ public class Main {
     }
 
     //methode pour gestionner le menu des réservations
-    private static void afficherSousMenuReservations(Scanner sc, Client c1, Client c2, Client c3, Client c4, Chambre ch1, Chambre ch2, Chambre ch3, Chambre ch4)
+    private static void afficherSousMenuReservations(Scanner sc, Hotel myHotel)
     {
          boolean retourVersMenuPrincipale = false;
 
@@ -156,11 +155,11 @@ public class Main {
     //------------------------------------méthodes pour les Ops du Menu Infos-----------------------------------------
 
     //Afficher les Informations d'un seul Client
-    private static void afficherInfoClient(Scanner sc, Client c1, Client c2, Client c3, Client c4)
+    private static void afficherInfoClient(Scanner sc, Hotel hotel)
     {
         System.out.println("\nEntrez l'ID du Client: ");
         int clientId = sc.nextInt();
-        Client client = trouverClientParId(clientId, c1, c2, c3, c4);
+        Client client = hotel.chercherClientParId(clientId);
         if (client != null)
         {
             client.afficherInfoClient();
@@ -179,18 +178,11 @@ public class Main {
     }
 
     //Vérifier une Chambre
-     private static void verifierChambre(Scanner sc, Chambre ch1, Chambre ch2, Chambre ch3, Chambre ch4)
+     private static void verifierChambre(Scanner sc, Hotel hotel)
      {
          System.out.println("Entrez l'ID de la Chambre: ");
          int chambreId = sc.nextInt();
-         Chambre chambre = trouverChambreParId(chambreId, ch1, ch2, ch3, ch4);
 
-         if (chambre != null)
-         {
-             chambre.afficherDetailsChambre();
-         }else {
-             System.out.println("Chambre n'existe pas!");
-         }
      }
 
     //Lister toutes les Chambres
@@ -207,12 +199,7 @@ public class Main {
     {
         System.out.println("Veuillez Entrez l'ID de la Reservation: ");
         int reservationId = sc.nextInt();
-        Reservation reservation = trouverReservationId(reservationId, reservations);
 
-        if (reservation != null)
-        {
-            reservation.afficherDetailsReservation();
-        }
     }
 
     //Lister toutes les Réservations
