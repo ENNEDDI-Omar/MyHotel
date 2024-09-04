@@ -140,11 +140,11 @@ public class Main {
                      break;
                  case 3:
                      //Modifier une Réservation
-
+                     modifierReservation(sc, myHotel);
                      break;
                  case 4:
                      //Annuler une Réservation
-
+                     annulerReservation(sc, myHotel);
                      break;
                  case 5:
                      //Retour vers le Menu Principal
