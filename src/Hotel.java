@@ -1,12 +1,14 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Hotel {
     private int id;
     private String name;
     private String address;
     private List<Chambre> chambres = new ArrayList<Chambre>();
-    private List<Client> clients = new ArrayList<Client>();
+    private Set<Client> clients = new HashSet<Client>();
     private List<Reservation> reservations = new ArrayList<Reservation>();
 
     public Hotel(int id, String name, String address) {
@@ -20,7 +22,7 @@ public class Hotel {
     public String getName() {return name;}
     public String getAddress() {return address;}
     public List<Chambre> getChambres() {return chambres;}
-    public List<Client> getClients() {return clients;}
+    public Set<Client> getClients() {return clients;}
     public List<Reservation> getReservations() {return reservations;}
 
     public void setName(String name) {this.name = name;}
@@ -53,7 +55,6 @@ public class Hotel {
    {
         Client newClient = new Client(id, nom, tel);
         clients.add(newClient);
-       System.out.println("Client Ajoutée avec Succés");
         return newClient;
    }
 
@@ -116,6 +117,8 @@ public class Hotel {
        System.out.println("Client inéxistant!");
        return null;
    }
+
+
 
 //methode d'affichage d'hotel
    public void afficherHotel()

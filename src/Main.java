@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -16,8 +17,6 @@ public class Main {
         myHotel.ajouterClient(2, "kamal", "064898989");
         myHotel.ajouterClient(3, "test", "064898989");
         myHotel.ajouterClient(4, "allo", "064898989");
-
-        //création des réservation
 
         //création du Menu:
         Scanner sc = new Scanner(System.in);
@@ -96,11 +95,11 @@ public class Main {
                     break;
                 case 5:
                     //Info sur une Réservation
-
+                      infoReservation(sc, myHotel);
                     break;
                 case 6:
                     //Lister toutes les Réservations
-
+                    listerReservations(myHotel);
                     break;
                 case 7:
                     //Retour vers le Menu Principal
@@ -131,18 +130,22 @@ public class Main {
              switch (optionMenuReservation)
              {
                  case 1:
-                     //Faire une Réservation
+                     //inscription Client
 
                      break;
                  case 2:
+                     //Faire une Réservation
+                     reserverUneChambre(sc, myHotel);
+                     break;
+                 case 3:
                      //Modifier une Réservation
 
                      break;
-                 case 3:
+                 case 4:
                      //Annuler une Réservation
 
                      break;
-                 case 4:
+                 case 5:
                      //Retour vers le Menu Principal
                      retourVersMenuPrincipale = true;
                      break;
@@ -226,6 +229,88 @@ public class Main {
             reservation.afficherDetailsReservation();
         }
     }
+
+//------------------------------methodes pour les Ops du Menu Réservation: --------------------------------------
+    //Faire une Réservation
+private static Reservation reserverUneChambre(Scanner sc, Hotel hotel) {
+    System.out.println("Veuillez Entrez votre Nom: ");
+    String nomClient = sc.next();
+    Client client = null;
+
+    // Recherche du client par nom
+    for (Client c : hotel.getClients()) {
+        if (c.getNom().equalsIgnoreCase(nomClient)) {
+            client = c;
+            break;
+        }
+    }
+
+    if (client == null) {
+        System.out.println("Client n'existe pas! Veuillez vous enregistrer d'abord.");
+        return null; // Correction: ajout d'un retour null
+    }
+
+
+    System.out.println("Entrez le numéro de la chambre: ");
+    int numeroChambre = sc.nextInt();
+    Chambre chambre = hotel.chercherChambreParNumero(numeroChambre);
+
+    if (chambre == null) {
+        System.out.println("Chambre non trouvée. Veuillez entrer un numéro de chambre valide.");
+        return null;
+    }
+
+    if (!chambre.getDisponibility()) {
+        System.out.println("Chambre non disponible pour la réservation.");
+        return null;
+    }
+
+    // Saisie des dates de réservation
+    LocalDate dateDebut;
+    LocalDate dateFin;
+    try {
+        System.out.println("Entrez la date de début de la réservation (YYYY-MM-DD): ");
+        String dateDebutStr = sc.next();
+        dateDebut = LocalDate.parse(dateDebutStr);
+
+        System.out.println("Entrez la date de fin de la réservation (YYYY-MM-DD): ");
+        String dateFinStr = sc.next();
+        dateFin = LocalDate.parse(dateFinStr);
+    } catch (Exception e) {
+        System.out.println("Format de date invalide. Veuillez entrer la date au format YYYY-MM-DD.");
+        return null;
+    }
+
+    // Vérification des dates
+    if (dateDebut.isAfter(dateFin)) {
+        System.out.println("Erreur : La date de début doit être antérieure à la date de fin.");
+        return null;
+    }
+
+    // Vérification de la disponibilité de la chambre pour les dates spécifiées
+    for (Reservation reservation : hotel.getReservations()) {
+        if (reservation.getChambre() == numeroChambre) {
+            // Vérifie si les dates se chevauchent
+            if ((dateDebut.isBefore(reservation.getDateFin()) && dateFin.isAfter(reservation.getDateDebut())) ||
+                    dateDebut.isEqual(reservation.getDateDebut()) || dateFin.isEqual(reservation.getDateFin())) {
+                System.out.println("La chambre est déjà réservée pendant cette période. Veuillez choisir une autre date.");
+                return null;
+            }
+        }
+    }
+
+
+    Reservation nouvelleReservation = client.ajouterReservation(chambre, dateDebut, dateFin);
+
+    System.out.println("Réservation ajoutée avec succès!");
+    return nouvelleReservation;
+}
+
+
+    //Modifier une Réservation
+
+
+    //Annuler une Réservation
 
 
 }

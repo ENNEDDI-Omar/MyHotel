@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Client {
+    private static int compteurId = 1;
     private int id;
     private String nom;
     private String tel;
     private List<Reservation> reservations = new ArrayList<Reservation>();
     private Hotel hotel;
 
-    public Client(int id, String nom, String tel) {
-        this.id = id;
+    public Client(String nom, String tel) {
+        this.id = compteurId++;
         this.nom = nom;
         this.tel = tel;
     }
@@ -42,12 +43,11 @@ public class Client {
         }
     }
 
-//methode Ajout de Réservation
-    public Reservation ajouterReservation(int reservationId, Chambre chambre, LocalDate dateDebut, LocalDate dateFin)
+//methode d'Ajout de Réservation
+    public Reservation ajouterReservation( Chambre chambre, LocalDate dateDebut, LocalDate dateFin)
     {
-        Reservation nouvelleReservation = new Reservation(reservationId, this, chambre, dateDebut, dateFin);
+        Reservation nouvelleReservation = new Reservation( this, chambre, dateDebut, dateFin);
         reservations.add(nouvelleReservation);
-        System.out.println("Réservation ajoutée avec succès!");
         return nouvelleReservation;
     }
 
