@@ -51,9 +51,9 @@ public class Hotel {
     }
 
 //méthode pour Ajouter Client à l'hotel
-   public Client ajouterClient(int id, String nom, String tel)
+   public Client ajouterClient(String nom, String tel)
    {
-        Client newClient = new Client(id, nom, tel);
+        Client newClient = new Client(nom, tel);
         clients.add(newClient);
         return newClient;
    }

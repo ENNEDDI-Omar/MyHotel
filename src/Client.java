@@ -29,7 +29,7 @@ public class Client {
 
 //methode pour afficher les infos du client:
     public void afficherInfoClient() {
-        System.out.println("Infos du Client: \nNom: " + getNom() + "\n" + "Tél: " + getTel());
+        System.out.println("Infos du Client: \nId : " +  getId() + "\n" + "Nom: " + getNom() + "\n" + "Tél: " + getTel());
         if (reservations.isEmpty()){
             System.out.println("Aucune réservation pour ce Client: " + getNom());
         }else {
@@ -60,7 +60,6 @@ public class Client {
          {
              r.setDateDebut(newDateDebut);
              r.setDateFin(newDateFin);
-             System.out.println("Réservation modiffier avec succés.");
              return;
          }
      }

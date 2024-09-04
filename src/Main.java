@@ -13,10 +13,10 @@ public class Main {
         myHotel.ajouterChambre(3, 101, "double", "500.DH");
         myHotel.ajouterChambre(4, 111, "vip", "800.DH");
 
-        myHotel.ajouterClient(1, "omar", "06456789");
-        myHotel.ajouterClient(2, "kamal", "064898989");
-        myHotel.ajouterClient(3, "test", "064898989");
-        myHotel.ajouterClient(4, "allo", "064898989");
+        myHotel.ajouterClient("omar", "06456789");
+        myHotel.ajouterClient( "kamal", "064898989");
+        myHotel.ajouterClient( "test", "064898989");
+        myHotel.ajouterClient( "allo", "064898989");
 
         //création du Menu:
         Scanner sc = new Scanner(System.in);
@@ -119,10 +119,11 @@ public class Main {
          while (!retourVersMenuPrincipale)
          {
              System.out.println("\nMenu d'Reservations : ");
-             System.out.println("1 - Faire une Réservation:");
-             System.out.println("2 - Modifier une Réservation:");
-             System.out.println("3 - Annuler une Réservation: ");
-             System.out.println("4 - Retour vers le Menu Principal :");
+             System.out.println("1 - Inscription à MyHotel");
+             System.out.println("2 - Faire une Réservation:");
+             System.out.println("3 - Modifier une Réservation:");
+             System.out.println("4 - Annuler une Réservation: ");
+             System.out.println("5 - Retour vers le Menu Principal :");
 
              System.out.println("Option invalide. Veuillez réessayer.");
              int optionMenuReservation = sc.nextInt();
@@ -131,7 +132,7 @@ public class Main {
              {
                  case 1:
                      //inscription Client
-
+                     inscrireClient(sc, myHotel);
                      break;
                  case 2:
                      //Faire une Réservation
@@ -231,8 +232,32 @@ public class Main {
     }
 
 //------------------------------methodes pour les Ops du Menu Réservation: --------------------------------------
+    //Inscrirer comme client
+    private static void inscrireClient(Scanner sc, Hotel hotel)
+    {
+        try {
+            System.out.println("---------------------INSCRIPTION---------------------\n");
+            System.out.println("Veuillez Entrez votre Nom: ");
+            String nom = sc.next();
+
+            System.out.println("Veuillez Entrez votre Tél: ");
+            String tel = sc.next();
+
+            Client client = hotel.ajouterClient(nom, tel);
+
+            if (client != null)
+            {
+                System.out.println("Inscription validée, Bienvenu cher Client: " + client.getNom() + " chez MyHotel.");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erreur lors de l'inscription du client, Veuillez réssayer plus tard! " + e.getMessage());
+        }
+    }
+
     //Faire une Réservation
-private static Reservation reserverUneChambre(Scanner sc, Hotel hotel) {
+    private static void reserverUneChambre(Scanner sc, Hotel hotel) {
+
     System.out.println("Veuillez Entrez votre Nom: ");
     String nomClient = sc.next();
     Client client = null;
@@ -247,7 +272,6 @@ private static Reservation reserverUneChambre(Scanner sc, Hotel hotel) {
 
     if (client == null) {
         System.out.println("Client n'existe pas! Veuillez vous enregistrer d'abord.");
-        return null; // Correction: ajout d'un retour null
     }
 
 
@@ -257,12 +281,10 @@ private static Reservation reserverUneChambre(Scanner sc, Hotel hotel) {
 
     if (chambre == null) {
         System.out.println("Chambre non trouvée. Veuillez entrer un numéro de chambre valide.");
-        return null;
     }
 
     if (!chambre.getDisponibility()) {
         System.out.println("Chambre non disponible pour la réservation.");
-        return null;
     }
 
     // Saisie des dates de réservation
@@ -276,41 +298,80 @@ private static Reservation reserverUneChambre(Scanner sc, Hotel hotel) {
         System.out.println("Entrez la date de fin de la réservation (YYYY-MM-DD): ");
         String dateFinStr = sc.next();
         dateFin = LocalDate.parse(dateFinStr);
+
+        if (dateDebut.isAfter(dateFin)) {
+            System.out.println("Erreur : La date de début doit être antérieure à la date de fin.");
+        }
+
+        Reservation nouvelleReservation = client.ajouterReservation(chambre, dateDebut, dateFin);
+
+        System.out.println("Réservation ajoutée avec succès!");
+
     } catch (Exception e) {
         System.out.println("Format de date invalide. Veuillez entrer la date au format YYYY-MM-DD.");
-        return null;
     }
 
-    // Vérification des dates
-    if (dateDebut.isAfter(dateFin)) {
-        System.out.println("Erreur : La date de début doit être antérieure à la date de fin.");
-        return null;
-    }
 
-    // Vérification de la disponibilité de la chambre pour les dates spécifiées
-    for (Reservation reservation : hotel.getReservations()) {
-        if (reservation.getChambre() == numeroChambre) {
-            // Vérifie si les dates se chevauchent
-            if ((dateDebut.isBefore(reservation.getDateFin()) && dateFin.isAfter(reservation.getDateDebut())) ||
-                    dateDebut.isEqual(reservation.getDateDebut()) || dateFin.isEqual(reservation.getDateFin())) {
-                System.out.println("La chambre est déjà réservée pendant cette période. Veuillez choisir une autre date.");
-                return null;
+}
+
+
+   //Modifier une Réservation
+    private static void modifierReservation(Scanner sc, Hotel hotel) {
+        try {
+            System.out.println("Entrez l'ID du Client pour modifier une réservation: ");
+            int clientId = sc.nextInt();
+            Client client = hotel.chercherClientParId(clientId);
+
+            if (client != null) {
+                System.out.println("Entrez l'ID de la réservation à modifier: ");
+                int reservationId = sc.nextInt();
+
+                System.out.println("Entrez le nouveau numéro de la chambre: ");
+                int numeroChambre = sc.nextInt();
+                Chambre nouvelleChambre = hotel.chercherChambreParNumero(numeroChambre);
+
+                if (nouvelleChambre != null) {
+                    System.out.println("Entrez la nouvelle date de début (YYYY-MM-DD): ");
+                    LocalDate nouvelleDateDebut = LocalDate.parse(sc.next());
+
+                    System.out.println("Entrez la nouvelle date de fin (YYYY-MM-DD): ");
+                    LocalDate nouvelleDateFin = LocalDate.parse(sc.next());
+
+                    client.modifierReservation(reservationId, nouvelleChambre, nouvelleDateDebut, nouvelleDateFin);
+                    System.out.println("Réservation modifiée avec succès!");
+                } else {
+                    System.out.println("Chambre non trouvée.");
+                }
+            } else {
+                System.out.println("Client non trouvé.");
             }
+        } catch (Exception e) {
+            System.out.println("Erreur lors de la modification de la réservation : " + e.getMessage());
         }
     }
 
 
-    Reservation nouvelleReservation = client.ajouterReservation(chambre, dateDebut, dateFin);
-
-    System.out.println("Réservation ajoutée avec succès!");
-    return nouvelleReservation;
-}
-
-
-    //Modifier une Réservation
-
-
     //Annuler une Réservation
+    private static void annulerReservation(Scanner sc, Hotel hotel) {
+        try {
+            System.out.println("Entrez l'ID du Client pour annuler une réservation: ");
+            int clientId = sc.nextInt();
+            Client client = hotel.chercherClientParId(clientId);
+
+            if (client != null) {
+                System.out.println("Entrez l'ID de la réservation à annuler: ");
+                int reservationId = sc.nextInt();
+
+                client.supprimerReservation(reservationId);
+            } else {
+                System.out.println("Client non trouvé.");
+            }
+        } catch (Exception e) {
+            System.out.println("Erreur lors de l'annulation de la réservation : " + e.getMessage());
+        }
+    }
+
+
 
 
 }

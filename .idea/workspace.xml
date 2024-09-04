@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b053b50-8666-4ae9-bb70-4f4347ef02f7" name="Changes" comment="Menu d'informations completé">
+    <list default="true" id="6b053b50-8666-4ae9-bb70-4f4347ef02f7" name="Changes" comment="remplacer la liste des client par set dans  classe Hotel">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Hotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hotel.java" afterDir="false" />
@@ -104,7 +104,7 @@
       <workItem from="1725004999136" duration="4196000" />
       <workItem from="1725009408225" duration="6787000" />
       <workItem from="1725047037833" duration="41333000" />
-      <workItem from="1725310635833" duration="21589000" />
+      <workItem from="1725310635833" duration="31266000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -170,7 +170,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725318216875</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="remplacer la liste des client par set dans  classe Hotel">
+      <option name="closed" value="true" />
+      <created>1725446131170</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1725446131170</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -185,6 +193,7 @@
     <MESSAGE value="création des methodes dans la classe hotel" />
     <MESSAGE value="mise en place des methodes dans le premier Menu" />
     <MESSAGE value="Menu d'informations completé" />
-    <option name="LAST_COMMIT_MESSAGE" value="Menu d'informations completé" />
+    <MESSAGE value="remplacer la liste des client par set dans  classe Hotel" />
+    <option name="LAST_COMMIT_MESSAGE" value="remplacer la liste des client par set dans  classe Hotel" />
   </component>
 </project>
